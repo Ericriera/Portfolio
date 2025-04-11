@@ -1,0 +1,110 @@
+---
+// Import the function to fetch collections
+import { getCollection } from "astro:content";
+import TimelineCard from "./TimelineCard.astro";
+
+const parseMonthYear = (str) => {
+  if (!str) return new Date();
+  const [month, year] = str.split("-").map(Number);
+  return new Date(year, month - 1);
+};
+
+const sortByEndDateDesc = (items) => {
+  return items.sort((a, b) => {
+    const dateA = parseMonthYear(a.data.endDate);
+    const dateB = parseMonthYear(b.data.endDate);
+    return dateB.getTime() - dateA.getTime();
+  });
+};
+
+const working = sortByEndDateDesc(await getCollection("working"));
+const education = sortByEndDateDesc(await getCollection("education"));
+---
+
+<section id="timeline" class="px-5 pt-8 md:px-12 md:pt-12">
+  <h3 class="text-4xl font-bold text-center mb-8">Timeline ⏳</h3>
+  <div class="flex justify-center mb-8 items-center">
+    <div
+      class="inline-flex rounded-full bg-neutral-800/40 backdrop-blur-md border border-white/10 shadow-md overflow-hidden"
+    >
+      <button
+        id="tab-work"
+        class="py-2 px-5 font-semibold opacity-100 transition-all duration-300 text-white hover:text-cornflower hover:opacity-100 cursor-pointer"
+      >
+        Working
+      </button>
+      <button
+        id="tab-education"
+        class="py-2 px-5 font-semibold opacity-60 transition-all duration-300 text-white hover:text-cornflower hover:opacity-100 cursor-pointer"
+      >
+        Education
+      </button>
+    </div>
+  </div>
+
+  <!-- Working Content -->
+  <div id="content-work" class="flex justify-center items-center">
+    <div class="max-w-7xl px-6 min-w-[25rem] md:min-w-[50rem] lg:min-w-[60rem]">
+      <div
+        class="relative before:absolute before:md:inset-0 before:mx-auto before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent translate-x-3 md:translate-x-0"
+      >
+        {
+          working.map((item, index) => (
+            <TimelineCard item={item} index={index} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Education Content -->
+  <div id="content-education" class="hidden justify-center items-center">
+    <div class="max-w-7xl px-6 min-w-[25rem] md:min-w-[50rem] lg:min-w-[60rem]">
+      <div
+        class="relative before:absolute before:md:inset-0 before:mx-auto before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent translate-x-3 md:translate-x-0"
+      >
+        {
+          education.map((item, index) => (
+            <TimelineCard item={item} index={index} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Script to handle tab switching
+  document.addEventListener("DOMContentLoaded", () => {
+    const workTab = document.getElementById("tab-work");
+    const educationTab = document.getElementById("tab-education");
+    const workContent = document.getElementById("content-work");
+    const educationContent = document.getElementById("content-education");
+
+    workTab.addEventListener("click", () => {
+      // Activate work tab
+      workTab.classList.add("opacity-100");
+      educationTab.classList.remove("opacity-100");
+      educationTab.classList.add("opacity-60");
+
+      // Show work content
+      workContent.classList.remove("hidden");
+      workContent.classList.add("flex");
+      educationContent.classList.add("hidden");
+      educationContent.classList.remove("flex");
+    });
+
+    educationTab.addEventListener("click", () => {
+      // Activate education tab
+      educationTab.classList.add("opacity-100");
+      workTab.classList.remove("opacity-100");
+      workTab.classList.add("opacity-60");
+
+      // Show education content
+      educationContent.classList.remove("hidden");
+      educationContent.classList.add("flex");
+      workContent.classList.add("hidden");
+      workContent.classList.remove("flex");
+    });
+  });
+</script>

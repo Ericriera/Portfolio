@@ -1,0 +1,67 @@
+---
+import { Icon } from "astro-icon/components";
+const { item, index } = Astro.props;
+---
+
+<dialog
+  id={`dialog-${index}`}
+  class="backdrop:bg-black/60 bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-md w-full max-w-md top-1/5 left-1/2 -translate-x-1/2"
+>
+  <form method="dialog" class="space-y-4 relative">
+    <button
+      id={`close-dialog-${index}`}
+      class="absolute top-0 right-0 text-gray-300 hover:text-white transition-all duration-300 cursor-pointer"
+    >
+      <Icon name="fa6-solid:xmark" size="20" />
+    </button>
+    <div class="flex gap-3 items-center">
+      <img
+        src=`src/assets/${item.data.icon}.png`
+        alt={item.data.icon}
+        class="w-12"
+      />
+      <div class="flex flex-col">
+        <h3 class="text-xl font-bold text-white">{item.data.position}</h3>
+        <h4 class="text-base text-gray-300">{item.data.company}</h4>
+      </div>
+    </div>
+    <p class="text-gray-400 leading-relaxed whitespace-pre-line">
+      {item.data.description}
+    </p>
+    <div class="flex justify-end gap-3">
+      {
+        item.data.website && (
+          <a
+            class="text-white hover:text-cornflower transition-all duration-300 cursor-pointer"
+            href={item.data.website}
+            target="_blank"
+          >
+            <Icon name="fa6-solid:globe" size="24" />
+          </a>
+        )
+      }
+      {
+        item.data.instagram && (
+          <a
+            class="text-white hover:text-cornflower transition-all duration-300 cursor-pointer"
+            href={item.data.instagram}
+            target="_blank"
+          >
+            <Icon name="fa6-brands:instagram" size="24" />
+          </a>
+        )
+      }
+      {
+        item.data.linkedin && (
+          <a
+            class="text-white hover:text-cornflower transition-all duration-300 cursor-pointer"
+            href={item.data.linkedin}
+            target="_blank"
+          >
+            <Icon name="fa6-brands:linkedin" size="24" />
+          </a>
+        )
+      }
+    </div>
+  </form>
+</dialog>

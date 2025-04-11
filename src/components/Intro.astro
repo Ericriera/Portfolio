@@ -1,0 +1,196 @@
+---
+import { Icon } from "astro-icon/components";
+import Typewriter from "astro-typewriter";
+
+const messages = [
+  "Full Stack Developer",
+  "Software Engineer",
+];
+---
+
+<div
+  id="intro"
+  class="flex flex-col md:flex-row items-center justify-center md:justify-between p-5 md:p-12"
+>
+  <!-- Personal information -->
+  <div class="flex flex-col gap-5 text-center md:text-left">
+    <p class="text-4xl">Hi 👋🏻, I'm</p>
+    <h1 class="text-8xl font-bold">Eric Riera</h1>
+    <Typewriter
+      class="text-4xl cursor"
+      messages={messages}
+    />
+
+    <!-- RRSS -->
+    <div class="flex justify-center md:justify-start gap-4 mt-4">
+      <a
+        class="hover:text-cornflower transition-all duration-300 cursor-pointer"
+        href="https://github.com/Ericriera"
+        target="_blank"
+      >
+        <Icon name="fa6-brands:github" size="40" />
+      </a>
+      <a
+        class="hover:text-cornflower transition-all duration-300 cursor-pointer"
+        href="https://www.linkedin.com/in/ericriera"
+        target="_blank"
+      >
+        <Icon name="fa6-brands:linkedin" size="40" />
+      </a>
+      <p class="mail flex items-center gap-2">
+        <a
+          class="hover:text-cornflower transition-all duration-300 cursor-pointer"
+          href="mailto:eric.riera.puertas@gmail.com"
+          target="_blank"
+        >
+          <Icon name="fa6-solid:envelope" size="40" />
+        </a>
+        eric.riera.puertas@gmail.com
+      </p>
+    </div>
+  </div>
+
+  <!-- Profile Image -->
+  <div class="hidden md:inline mt-8 md:mt-0">
+    <img
+      class="profilephoto w-80 rounded-full"
+      src="/profile.jpg"
+      alt="Profile Photo"
+    />
+  </div>
+
+  <!-- Scroll Down -->
+  <div id="sd">
+    <a class="scrolldown" href="#aboutme" style="--color: cornflowerblue">
+      <div class="chevrons">
+        <div class="chevrondown"></div>
+        <div class="chevrondown"></div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<style>
+  #intro {
+    background-image: url(/intro.png);
+    color: white;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    background-position: center;
+    height: 100vh;
+  }
+
+  .cursor::part(typewriter)::after {
+    color: cornflowerblue;
+    width: 0.1em;
+  }
+
+  /*.scrolldown button*/
+  @media only screen and (min-width: 540px) {
+    #sd {
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%) scale(0.7);
+      position: absolute;
+      text-align: center;
+      width: auto;
+      z-index: 10;
+    }
+
+    .scrolldown {
+      display: block;
+      --color: white;
+      --sizeX: 30px;
+      --sizeY: 50px;
+      position: relative;
+      width: var(--sizeX);
+      height: var(--sizeY);
+      margin-left: var(sizeX / 2);
+      border: calc(var(--sizeX) / 10) solid var(--color);
+      border-radius: 50px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+      cursor: pointer;
+      margin: 0 auto;
+    }
+
+    .scrolldown::before {
+      content: "";
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      background-color: var(--color);
+      border-radius: 100%;
+      animation: scrolldown-anim 2s infinite;
+      box-sizing: border-box;
+      box-shadow: 0px -5px 3px 1px #2a547066;
+    }
+
+    @keyframes scrolldown-anim {
+      0% {
+        opacity: 0;
+        height: 6px;
+      }
+
+      40% {
+        opacity: 1;
+        height: 10px;
+      }
+
+      80% {
+        transform: translate(0, 20px);
+        height: 10px;
+        opacity: 0;
+      }
+
+      100% {
+        height: 3px;
+        opacity: 0;
+      }
+    }
+
+    .chevrons {
+      padding: 6px 0 0 0;
+      margin-left: -3px;
+      margin-top: 48px;
+      width: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chevrondown {
+      margin-top: -6px;
+      position: relative;
+      border: solid var(--color);
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      transform: rotate(45deg);
+    }
+
+    .chevrondown:nth-child(odd) {
+      animation: pulse54012 500ms ease infinite alternate;
+    }
+
+    .chevrondown:nth-child(even) {
+      animation: pulse54012 500ms ease infinite alternate 250ms;
+    }
+
+    @keyframes pulse54012 {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 0.5;
+      }
+    }
+  }
+</style>

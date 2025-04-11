@@ -1,0 +1,77 @@
+---
+import { Icon } from "astro-icon/components";
+import ProjectsLink from "./ProjectsLink.astro";
+import SkillIcon from "../Skills/SkillIcon.astro";
+const { item } = Astro.props;
+
+const url = `/src/assets/projects/${item.data.image}.png`;
+let color = "";
+let icon = "";
+let type = "";
+
+if (item.data.type === "web") {
+  icon = "fa6-solid:globe";
+  color = "bg-green-400";
+  type = "Website";
+} else if (item.data.type === "app") {
+  icon = "fa6-solid:mobile-screen-button";
+  color = "bg-orange-400";
+  type = "App";
+} else if (item.data.type === "game") {
+  icon = "fa6-solid:gamepad";
+  color = "bg-red-400";
+  type = "Game";
+} else if (item.data.type === "webapp") {
+  icon = "fa6-solid:desktop";
+  color = "bg-blue-400";
+  type = "WebApp";
+}
+---
+
+<article
+  class="relative bg-cover bg-center bg-no-repeat rounded-xl shadow-md w-88 h-64"
+  style={`background-image: url(${url})`}
+>
+  <div class="flex gap-2 p-3">
+    <span
+      class={`flex items-center justify-center gap-2 px-2 py-1 text-[0.8rem] rounded-lg cursor-pointer ${color}`}
+    >
+      <Icon name={icon} size="16" />
+      <p class="leading-[1.2]">{type}</p>
+    </span>
+    {
+      item.data.skills.map((skill) => (
+        <SkillIcon icon={skill.icon} tooltip={skill.tooltip} size="24" />
+      ))
+    }
+  </div>
+  <!-- Glassmorphism bottom container -->
+  <div
+    class="flex flex-row gap-2 absolute bottom-0 w-full bg-neutral-800/40 backdrop-blur-md border-t border-white/10 p-3 z-10 rounded-xl"
+  >
+    <div class="flex flex-col">
+      <h4 class="text-bold">
+        {item.data.name}
+      </h4>
+      <p class="text-gray-200 text-[0.8rem] leading-4 m-0">
+        {item.data.description}
+      </p>
+    </div>
+    <div class="flex flex-col gap-2 align-center justify-center">
+      { item.data.website && (
+        <ProjectsLink
+          link={item.data.website}
+          icon="fa6-solid:globe"
+          text="Try"
+        />
+      )}
+      { item.data.github && (
+        <ProjectsLink
+          link={item.data.github}
+          icon="fa6-brands:github"
+          text="Code"
+        />
+      )}
+    </div>
+  </div>
+</article>

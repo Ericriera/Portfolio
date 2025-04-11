@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cornflower: cornflowerblue;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-neutral-900 text-white;
+  background-image: url("src/assets/bg-grid.png");
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: cornflowerblue;
+  border-radius: 10px;
+}

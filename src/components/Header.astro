@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<header
+  class="bg-neutral-800/40 backdrop-blur-md border border-white/10 flex flex-col md:flex-row items-center md:justify-between px-4 py-2 rounded-4xl shadow-md fixed top-4 md:top-6 left-1/2 transform -translate-x-1/2 w-11/12 md:w-auto md:max-w-screen-md md:px-8 z-50 transition-all duration-300"
+>
+  <!-- Logo + botón -->
+  <div class="w-full flex items-center justify-between">
+    <a href="#" class="flex-shrink-0">
+      <img id="logo" src="src/assets/logo.png" class="h-10 mr-4 md:mr-8" />
+    </a>
+
+    <!-- Botón hamburguesa -->
+    <button
+      id="menu-toggle"
+      class="md:hidden text-white text-2xl"
+      aria-label="Toggle menu"
+    >
+      <Icon name="fa6-solid:bars" size="24" />
+      <Icon class="hidden" name="fa6-solid:xmark" size="24" />
+    </button>
+  </div>
+
+  <!-- Navigation menu -->
+  <nav id="mobile-menu" class="hidden md:flex items-center gap-8 mb-4 md:mb-0">
+    <a
+      class="text-white hover:text-cornflower transition-all duration-300 font-medium whitespace-nowrap"
+      href="#aboutme"
+    >
+      About me
+    </a>
+    <a
+      class="text-white hover:text-cornflower transition-all duration-300 font-medium whitespace-nowrap"
+      href="#timeline"
+    >
+      Timeline
+    </a>
+    <a
+      class="text-white hover:text-cornflower transition-all duration-300 font-medium whitespace-nowrap"
+      href="#projects"
+    >
+      Projects
+    </a>
+  </nav>
+</header>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const icons = toggleBtn.querySelectorAll("svg");
+
+    toggleBtn.addEventListener("click", () => {
+      const isHidden = menu.classList.contains("hidden");
+
+      if (isHidden) {
+        menu.classList.remove("hidden");
+        menu.classList.add("flex", "flex-col");
+        icons[0].classList.add("hidden");
+        icons[1].classList.remove("hidden");
+      } else {
+        menu.classList.add("hidden");
+        menu.classList.remove("flex", "flex-col");
+        icons[0].classList.remove("hidden");
+        icons[1].classList.add("hidden");
+      }
+    });
+  });
+</script>

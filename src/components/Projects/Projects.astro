@@ -1,0 +1,26 @@
+---
+// Import the function to fetch collections
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import ProjectsCard from "./ProjectsCard.astro";
+
+// Fetch the collections
+const projects = await getCollection("projects");
+---
+
+<section id="projects" class="px-5 py-8 md:p-12">
+  <h3 class="text-4xl font-bold text-center mb-8">Projects 👨🏻‍💻</h3>
+  <!-- Projects Content -->
+  <div class="flex gap-5 flex-wrap justify-center items-center">
+    {projects.map((item) => <ProjectsCard item={item} />)}
+  </div>
+  <a href="https://github.com/Ericriera?tab=repositories" target="_blank" class="flex justify-center items-center mt-8">
+    <button
+      class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-3 shadow-md flex items-center justify-center gap-2 transition-all duration-300 hover:bg-neutral-700/40 cursor-pointer"
+    >
+      <Icon name="fa6-brands:github" size="24" />
+      See all my projects
+      <Icon name="fa6-solid:arrow-up-right-from-square" size="12" />
+    </button>
+  </a>
+</section>

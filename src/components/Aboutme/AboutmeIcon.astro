@@ -1,0 +1,15 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { name, data, text } = Astro.props;
+---
+
+<div class="m-3 flex-1 h-full flex flex-col justify-center gap-4 max-w-md min-w-30">
+  <div class="flex justify-center items-center">
+    <Icon name={name} size="32" />
+    {data && <p class="ml-5 text-3xl">{data}</p>}
+  </div>
+  <p class="text-center">
+    {text}
+  </p>
+</div>

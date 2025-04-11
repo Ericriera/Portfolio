@@ -1,0 +1,22 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { icon, tooltip, level, size } = Astro.props;
+const iconSize = size || "56";
+---
+
+<div class="flex flex-col items-center relative group">
+  <Icon name={icon} size={iconSize} class="cursor-pointer" />
+  <span
+    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 scale-95 translate-y-2 group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 transition-all duration-300 bg-black text-white text-sm font-semibold py-1 px-2 rounded-md whitespace-nowrap shadow-lg"
+  >
+    {tooltip}
+  </span>
+  {
+    level && (
+      <p class="mt-2 rounded-lg border border-white/30 px-2 py-1 text-xs">
+        {level}
+      </p>
+    )
+  }
+</div>

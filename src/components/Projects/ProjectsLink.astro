@@ -1,0 +1,14 @@
+---
+import { Icon } from "astro-icon/components";
+const { link, icon, text } = Astro.props;
+---
+
+<a href={link} target="_blank">
+  <button
+    class="flex items-center justify-center gap-2 p-2 text-[0.8rem] transition-all duration-300 bg-neutral-800 hover:bg-neutral-700 rounded-lg cursor-pointer"
+  >
+    <Icon name={icon} size="16" />
+    {text}
+    <Icon name="fa6-solid:arrow-up-right-from-square" size="10" />
+  </button>
+</a>

@@ -1,0 +1,29 @@
+---
+import AboutmeIcon from "./AboutmeIcon.astro"
+
+const text1 = "My name is Eric Riera, and I am a graduate in Computer Engineering with a specialization in Software Engineering from FIB-UPC. I am currently working as a Full Stack Engineer at Air-Fi."
+const text2 = "I describe myself as a fast learner and a good problem solver. I like learning new things every day and taking on new challenges."
+const text3 = "When I have free time, some of my hobbies are playing basketball, working on personal projects, watching series or movies and listening to music. I also love to travel and spend time with my family and friends."
+
+const years = new Date().getFullYear() - 2002;
+const workingYears = new Date().getFullYear() - 2023;
+const countries = 11;
+const ballinYears = 16;
+---
+
+<section id="aboutme" class="px-5 py-8 md:p-12 max-w-4xl mx-auto">
+    <h3 class="text-4xl font-bold text-center  mb-8">About me 🙋🏻‍♂️</h3>
+    <section class="px-5 py-5 bg-neutral-800/40 backdrop-blur-md border border-white/10 my-5 rounded-xl">
+        <p class="mb-2">{text1}</p>
+        <p class="mb-2">{text2}</p>
+        <p>{text3}</p>
+    </section>
+    <section class="flex flex-wrap justify-around items-center w-full">
+        <AboutmeIcon name="fa6-solid:cake-candles" data={years} text="years old" />
+        <AboutmeIcon name="fa6-solid:graduation-cap" text="Graduate's" />
+        <AboutmeIcon name="fa6-solid:laptop-code" data={workingYears} text="years working" />
+        <AboutmeIcon name="fa6-solid:map" data={countries} text="countries visited" />
+        <AboutmeIcon name="fa6-solid:basketball" data={ballinYears} text="years ballin'" />
+    </section>
+        
+</section>

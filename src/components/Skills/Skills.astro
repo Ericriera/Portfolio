@@ -1,0 +1,63 @@
+---
+import SkillIcon from './SkillIcon.astro'
+---
+
+<section id="skills" class="px-5 py-8 md:p-12">
+  <h3 class="text-4xl font-bold text-center mb-8">My Skills</h3>
+  <section class="max-w-3xl mx-auto space-y-10">
+
+    <!-- Programming Languages -->
+    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
+      <h4 class="text-lg font-semibold mb-4">Programming Languages</h4>
+      <div class="flex flex-wrap gap-10">
+        <SkillIcon icon="skill-icons:python-dark" tooltip="Python" />
+        <SkillIcon icon="skill-icons:javascript" tooltip="JavaScript" />
+        <SkillIcon icon="skill-icons:typescript" tooltip="Typescript" />
+        <SkillIcon icon="skill-icons:java-dark" tooltip="Java" />
+        <SkillIcon icon="skill-icons:cpp" tooltip="C++" />
+      </div>
+    </div>
+
+    <!-- Frameworks -->
+    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
+      <h4 class="text-lg font-semibold mb-4">Frameworks</h4>
+      <div class="flex flex-wrap gap-10">
+        <SkillIcon icon="skill-icons:vuejs-dark" tooltip="Vue" />
+        <SkillIcon icon="skill-icons:django" tooltip="Django" />
+        <SkillIcon icon="skill-icons:fastapi" tooltip="FastAPI" />
+        <SkillIcon icon="skill-icons:react-dark" tooltip="React/ReactNative" />
+      </div>
+    </div>
+
+    <!-- DevOps -->
+    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
+      <h4 class="text-lg font-semibold mb-4">DevOps</h4>
+      <div class="flex flex-wrap gap-10">
+        <SkillIcon icon="skill-icons:aws-dark" tooltip="AWS" />
+        <SkillIcon icon="skill-icons:docker" tooltip="Docker" />
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
+      <h4 class="text-lg font-semibold mb-4">Languages</h4>
+      <div class="flex flex-wrap gap-10">
+        <SkillIcon icon="cat" tooltip="Catalan" level="Native"/>
+        <SkillIcon icon="sp" tooltip="Spanish" level="Native"/>
+        <SkillIcon icon="uk" tooltip="English" level="B2" />
+        <SkillIcon icon="ger" tooltip="German" level="Basic"/>
+      </div>
+    </div>
+
+  </section>
+</section>
+
+<style>
+  #skills {
+    background-image: url(/skills.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+</style>
