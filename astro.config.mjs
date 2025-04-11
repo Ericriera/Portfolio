@@ -10,6 +10,11 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@": new URL("./src", import.meta.url),
+      },
+    },
   },
 
   integrations: [
