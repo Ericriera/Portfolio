@@ -45,7 +45,7 @@ const { item, index } = Astro.props;
   <TimelineDialog item={item} index={index} />
 </timeline-card>
 
-<script is:inline>
+<script>
   class TimelineCard extends HTMLElement {
     connectedCallback() {
       const index = this.dataset.index;
