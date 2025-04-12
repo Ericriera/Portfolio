@@ -6,7 +6,7 @@ skills: [
     {icon: 'skill-icons:react-dark', tooltip: 'React Native' },
     {icon: 'skill-icons:fastapi', tooltip: 'FastAPI' }
 ]
-image: jomaimai
+image: '@/assets/projects/jomaimai.png'
 website: https://jomaimai.netlify.app/
 github: https://github.com/Ericriera/Jo-mai-mai
 ---

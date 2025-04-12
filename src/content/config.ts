@@ -1,13 +1,13 @@
 import { defineCollection, z } from "astro:content";
 
 const working = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     company: z.string(),
     position: z.string(),
     startDate: z.string(),
     endDate: z.string().optional(),
     description: z.string(),
-    icon: z.string(),
+    icon: image(),
     website: z.string().url().optional(),
     instagram: z.string().url().optional(),
     linkedin: z.string().url().optional(),
@@ -15,13 +15,13 @@ const working = defineCollection({
 });
 
 const education = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     company: z.string(),
     position: z.string(),
     startDate: z.string(),
     endDate: z.string().optional(),
     description: z.string(),
-    icon: z.string(),
+    icon: image(),
     website: z.string().url().optional(),
     instagram: z.string().url().optional(),
     linkedin: z.string().url().optional(),
@@ -29,7 +29,7 @@ const education = defineCollection({
 });
 
 export const projects = defineCollection({
-  schema: z.object({
+  schema: ({ image }) => z.object({
     type: z.string(),
     name: z.string(),
     description: z.string(),
@@ -39,7 +39,7 @@ export const projects = defineCollection({
         tooltip: z.string(),
       })
     ),
-    image: z.string(),
+    image: image(),
     website: z.string().url().optional(),
     github: z.string().url().optional(),
   }),

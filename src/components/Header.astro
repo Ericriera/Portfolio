@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import logo from "@/assets/logo.png";
 ---
 
 <header
@@ -8,7 +9,7 @@ import { Icon } from "astro-icon/components";
   <!-- Logo + botón -->
   <div class="w-full flex items-center justify-between">
     <a href="#" class="flex-shrink-0">
-      <img id="logo" src="src/assets/logo.png" class="h-10 mr-4 md:mr-8" />
+      <img src={logo.src} class="h-10 mr-4 md:mr-8" alt="logo"/>
     </a>
 
     <!-- Botón hamburguesa -->

@@ -10,7 +10,7 @@ html {
 
 body {
   @apply bg-neutral-900 text-white;
-  background-image: url("src/assets/bg-grid.png");
+  background-image: url("/bg-grid.png");
 }
 
 ::-webkit-scrollbar {

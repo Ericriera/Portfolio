@@ -4,7 +4,6 @@ import ProjectsLink from "./ProjectsLink.astro";
 import SkillIcon from "../Skills/SkillIcon.astro";
 const { item } = Astro.props;
 
-const url = `/src/assets/projects/${item.data.image}.png`;
 let color = "";
 let icon = "";
 let type = "";
@@ -30,7 +29,7 @@ if (item.data.type === "web") {
 
 <article
   class="relative bg-cover bg-center bg-no-repeat rounded-xl shadow-md w-88 h-64"
-  style={`background-image: url(${url})`}
+  style={`background-image: url(${item.data.image.src})`}
 >
   <div class="flex gap-2 p-3">
     <span

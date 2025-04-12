@@ -7,6 +7,6 @@ skills: [
     {icon: 'skill-icons:react-dark', tooltip: 'React Native' },
     {icon: 'skill-icons:django', tooltip: 'Django' }
 ]
-image: cultucat
+image: '@/assets/projects/cultucat.png'
 github: https://github.com/orgs/ASW-TECM/repositories
 ---

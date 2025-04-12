@@ -6,6 +6,6 @@ skills: [
     {icon: 'skill-icons:react-dark', tooltip: 'React' },
     {icon: 'skill-icons:rails', tooltip: 'Ruby on Rails' }
 ]
-image: buggle
+image: '@/assets/projects/buggle.png'
 github: https://github.com/orgs/ASW-TECM/repositories
 ---

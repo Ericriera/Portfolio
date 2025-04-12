@@ -16,7 +16,7 @@ const { item, index } = Astro.props;
     </button>
     <div class="flex gap-3 items-center">
       <img
-        src=`src/assets/${item.data.icon}.png`
+        src={item.data.icon.src}
         alt={item.data.icon}
         class="w-12"
       />

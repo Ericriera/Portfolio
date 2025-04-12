@@ -1,6 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import Typewriter from "astro-typewriter";
+import profileimg from "@/assets/profile.jpg";
 
 const messages = [
   "Full Stack Developer",
@@ -52,10 +54,10 @@ const messages = [
 
   <!-- Profile Image -->
   <div class="hidden md:inline mt-8 md:mt-0">
-    <img
-      class="profilephoto w-80 rounded-full"
-      src="/profile.jpg"
-      alt="Profile Photo"
+    <Image
+      class="w-80 rounded-full"
+      src={profileimg}
+      alt="profile"
     />
   </div>
 
