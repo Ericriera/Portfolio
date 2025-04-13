@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const { name, data, text } = Astro.props;
+const { name, data, text, link } = Astro.props;
 ---
 
 <div class="m-3 flex-1 h-full flex flex-col justify-center gap-4 max-w-md min-w-30">
@@ -9,7 +9,15 @@ const { name, data, text } = Astro.props;
     <Icon name={name} size="32" />
     {data && <p class="ml-5 text-3xl">{data}</p>}
   </div>
-  <p class="text-center">
-    {text}
-  </p>
+  {link ? (
+    <a
+      href={link}
+      class="flex justify-center items-center gap-2 text-center hover:text-cornflower transition-all duration-300"
+    >
+      <span>{text}</span>
+      <Icon name="fa6-solid:arrow-up-right-from-square" size="12" />
+    </a>
+  ) : (
+    <p class="text-center">{text}</p>
+  )}
 </div>

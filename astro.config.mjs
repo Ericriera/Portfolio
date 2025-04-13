@@ -6,6 +6,8 @@ import icon from "astro-icon";
 
 import netlify from "@astrojs/netlify";
 
+import solidJs from "@astrojs/solid-js";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -17,11 +19,9 @@ export default defineConfig({
     },
   },
 
-  integrations: [
-    icon({
-      iconDir: "src/assets/icons",
-    }),
-  ],
+  integrations: [icon({
+    iconDir: "src/assets/icons",
+  }), solidJs()],
 
   output: "server",
   adapter: netlify({

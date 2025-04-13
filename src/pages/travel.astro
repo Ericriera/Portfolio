@@ -1,0 +1,17 @@
+---
+import { Icon } from "astro-icon/components";
+import Globe from "@/components/Globe";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+  <a href="/" class="absolute top-5 left-5">
+    <button
+      class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl py-2 px-3 shadow-md flex items-center justify-center gap-2 transition-all duration-300 hover:bg-neutral-700/40 cursor-pointer"
+    >
+      <Icon name="fa6-solid:chevron-left" size="16" />
+      <p class="pb-0.5">Back</p>
+    </button>
+  </a>
+  <Globe client:load />
+</Layout>
