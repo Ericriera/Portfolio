@@ -6,26 +6,49 @@ import SkillIcon from './SkillIcon.astro'
   <h3 class="text-4xl font-bold text-center mb-8">My Skills</h3>
   <section class="max-w-3xl mx-auto space-y-10">
 
-    <!-- Programming Languages -->
+    <!-- Backend -->
     <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
-      <h4 class="text-lg font-semibold mb-4">Programming Languages</h4>
+      <h4 class="text-lg font-semibold mb-4">Backend</h4>
       <div class="flex flex-wrap gap-10">
         <SkillIcon icon="skill-icons:python-dark" tooltip="Python" />
-        <SkillIcon icon="skill-icons:javascript" tooltip="JavaScript" />
-        <SkillIcon icon="skill-icons:typescript" tooltip="Typescript" />
-        <SkillIcon icon="skill-icons:java-dark" tooltip="Java" />
-        <SkillIcon icon="skill-icons:cpp" tooltip="C++" />
+        <SkillIcon icon="skill-icons:django" tooltip="Django" />
+        <SkillIcon icon="skill-icons:fastapi" tooltip="FastAPI" />
+        <!-- <SkillIcon icon="api" tooltip="REST API Design" /> -->
+        <!-- <SkillIcon icon="lock" tooltip="Authentication & Authorization" /> -->
+        <!-- <SkillIcon icon="server" tooltip="Serverless Framework" /> -->
       </div>
     </div>
 
-    <!-- Frameworks -->
+    <!-- Frontend -->
     <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
-      <h4 class="text-lg font-semibold mb-4">Frameworks</h4>
+      <h4 class="text-lg font-semibold mb-4">Frontend</h4>
       <div class="flex flex-wrap gap-10">
-        <SkillIcon icon="skill-icons:vuejs-dark" tooltip="Vue" />
-        <SkillIcon icon="skill-icons:django" tooltip="Django" />
-        <SkillIcon icon="skill-icons:fastapi" tooltip="FastAPI" />
-        <SkillIcon icon="skill-icons:react-dark" tooltip="React/ReactNative" />
+        <SkillIcon icon="skill-icons:vuejs-dark" tooltip="Vue 3" />
+        <SkillIcon icon="skill-icons:react-dark" tooltip="React" />
+        <SkillIcon icon="skill-icons:nextjs-dark" tooltip="Next.js" />
+        <SkillIcon icon="skill-icons:astro" tooltip="Astro" />
+        <SkillIcon icon="skill-icons:vite-dark" tooltip="Vite" />
+      </div>
+    </div>
+
+    <!-- Databases -->
+    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
+      <h4 class="text-lg font-semibold mb-4">Databases</h4>
+      <div class="flex flex-wrap gap-10">
+        <SkillIcon icon="skill-icons:postgresql-dark" tooltip="PostgreSQL" />
+        <SkillIcon icon="skill-icons:mongodb" tooltip="MongoDB" />
+        <SkillIcon icon="skill-icons:dynamodb-dark" tooltip="DynamoDB" />
+      </div>
+    </div>
+
+    <!-- DevOps & Tools -->
+    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
+      <h4 class="text-lg font-semibold mb-4">DevOps & Tools</h4>
+      <div class="flex flex-wrap gap-10">
+        <SkillIcon icon="skill-icons:aws-dark" tooltip="AWS" />
+        <SkillIcon icon="skill-icons:docker" tooltip="Docker" />
+        <SkillIcon icon="skill-icons:nginx" tooltip="Nginx" />
+        <SkillIcon icon="skill-icons:terraform-dark tooltip="Terraform" />
       </div>
     </div>
 
@@ -33,17 +56,8 @@ import SkillIcon from './SkillIcon.astro'
     <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
       <h4 class="text-lg font-semibold mb-4">Testing</h4>
       <div class="flex flex-wrap gap-10">
-        <SkillIcon icon="skill-icons:vitest-dark" tooltip="Vitest" />
         <SkillIcon icon="pytest" tooltip="Pytest" />
-      </div>
-    </div>
-
-    <!-- DevOps -->
-    <div class="bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-md">
-      <h4 class="text-lg font-semibold mb-4">DevOps</h4>
-      <div class="flex flex-wrap gap-10">
-        <SkillIcon icon="skill-icons:aws-dark" tooltip="AWS" />
-        <SkillIcon icon="skill-icons:docker" tooltip="Docker" />
+        <SkillIcon icon="skill-icons:vitest-dark" tooltip="Vitest" />
       </div>
     </div>
 
@@ -53,7 +67,7 @@ import SkillIcon from './SkillIcon.astro'
       <div class="flex flex-wrap gap-10">
         <SkillIcon icon="cat" tooltip="Catalan" level="Native"/>
         <SkillIcon icon="sp" tooltip="Spanish" level="Native"/>
-        <SkillIcon icon="uk" tooltip="English" level="B2" />
+        <SkillIcon icon="uk" tooltip="English" level="C1 (in progress)" />
         <SkillIcon icon="ger" tooltip="German" level="Basic"/>
       </div>
     </div>
