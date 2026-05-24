@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import ProjectsLink from "./ProjectsLink.astro";
 import SkillIcon from "../Skills/SkillIcon.astro";
 const { item } = Astro.props;
@@ -28,10 +29,20 @@ if (item.data.type === "web") {
 ---
 
 <article
-  class="relative bg-cover bg-center bg-no-repeat rounded-xl shadow-md w-88 h-64"
-  style={`background-image: url(${item.data.image.src})`}
+  class="relative rounded-xl shadow-md w-88 h-64"
 >
-  <div class="flex gap-2 p-3">
+  <div class="absolute inset-0 overflow-hidden rounded-xl">
+    <Image
+      src={item.data.image}
+      alt={`Preview of ${item.data.name}`}
+      class="h-full w-full object-cover"
+      widths={[352, 704]}
+      sizes="(max-width: 768px) 90vw, 352px"
+      format="webp"
+      loading="lazy"
+    />
+  </div>
+  <div class="relative z-10 flex gap-2 p-3">
     <span
       class={`flex items-center justify-center gap-2 px-2 py-1 text-[0.8rem] rounded-lg cursor-pointer ${color}`}
     >

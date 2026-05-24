@@ -1,24 +1,31 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 const { item, index } = Astro.props;
 ---
 
 <dialog
   id={`dialog-${index}`}
-  class="backdrop:bg-black/60 bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-md w-full max-w-md top-1/5 left-1/2 -translate-x-1/2"
+  class="timeline-dialog backdrop:bg-black/60 bg-neutral-800/40 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-md w-full max-w-md"
 >
   <form method="dialog" class="space-y-4 relative">
     <button
       id={`close-dialog-${index}`}
       class="absolute top-0 right-0 text-gray-300 hover:text-white transition-all duration-300 cursor-pointer"
+      aria-label="Close dialog"
+      type="button"
     >
       <Icon name="fa6-solid:xmark" size="20" />
     </button>
     <div class="flex gap-3 items-center">
-      <img
-        src={item.data.icon.src}
-        alt={item.data.icon}
+      <Image
+        src={item.data.icon}
+        alt={`${item.data.company} logo`}
         class="w-12"
+        widths={[48, 96]}
+        sizes="48px"
+        format="webp"
+        loading="lazy"
       />
       <div class="flex flex-col">
         <h3 class="text-xl font-bold text-white">{item.data.position}</h3>
@@ -65,3 +72,42 @@ const { item, index } = Astro.props;
     </div>
   </form>
 </dialog>
+
+<style>
+  .timeline-dialog {
+    position: fixed;
+    top: 20vh;
+    left: 50%;
+    margin: 0;
+    max-height: calc(100vh - 2rem);
+    opacity: 0;
+    transform: translateX(-50%) translateY(24px) scale(0.96);
+    overflow-y: auto;
+    transition:
+      opacity 220ms ease,
+      transform 280ms var(--ease-snappy);
+  }
+
+  .timeline-dialog::backdrop {
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .timeline-dialog.dialog-visible[open] {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .timeline-dialog.dialog-visible[open]::backdrop {
+    opacity: 1;
+  }
+
+  .timeline-dialog.dialog-closing[open] {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px) scale(0.98);
+  }
+
+  .timeline-dialog.dialog-closing[open]::backdrop {
+    opacity: 0;
+  }
+</style>

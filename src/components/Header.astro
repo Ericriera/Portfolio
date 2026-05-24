@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import logo from "@/assets/logo.png";
 ---
 
@@ -9,14 +10,25 @@ import logo from "@/assets/logo.png";
   <!-- Logo + botón -->
   <div class="w-full flex items-center justify-between">
     <a href="#" class="flex-shrink-0">
-      <img src={logo.src} class="h-10 mr-4 md:mr-8" alt="logo"/>
+      <Image
+        src={logo}
+        alt="Eric Riera logo"
+        class="h-10 w-auto mr-4 md:mr-8"
+        widths={[96, 192]}
+        sizes="96px"
+        format="webp"
+        loading="eager"
+      />
     </a>
 
     <!-- Botón hamburguesa -->
     <button
       id="menu-toggle"
-      class="md:hidden text-white text-2xl"
+      class="interactive-press md:hidden text-white text-2xl"
       aria-label="Toggle menu"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      type="button"
     >
       <Icon name="fa6-solid:bars" size="24" />
       <Icon class="hidden" name="fa6-solid:xmark" size="24" />
@@ -24,7 +36,11 @@ import logo from "@/assets/logo.png";
   </div>
 
   <!-- Navigation menu -->
-  <nav id="mobile-menu" class="hidden md:flex items-center gap-8 mb-4 md:mb-0">
+  <nav
+    id="mobile-menu"
+    class="mobile-nav md:flex md:items-center md:gap-8 md:mb-0"
+    data-open="false"
+  >
     <a
       class="text-white hover:text-cornflower transition-all duration-300 font-medium whitespace-nowrap"
       href="#aboutme"
@@ -50,22 +66,80 @@ import logo from "@/assets/logo.png";
   document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.getElementById("menu-toggle");
     const menu = document.getElementById("mobile-menu");
+    if (!toggleBtn || !menu) return;
+
     const icons = toggleBtn.querySelectorAll("svg");
+    const links = menu.querySelectorAll("a");
+
+    const setMenuState = (isOpen) => {
+      menu.dataset.open = String(isOpen);
+      toggleBtn.setAttribute("aria-expanded", String(isOpen));
+
+      if (icons[0] && icons[1]) {
+        icons[0].classList.toggle("hidden", isOpen);
+        icons[1].classList.toggle("hidden", !isOpen);
+      }
+    };
 
     toggleBtn.addEventListener("click", () => {
-      const isHidden = menu.classList.contains("hidden");
+      const isOpen = menu.dataset.open === "true";
+      setMenuState(!isOpen);
+    });
 
-      if (isHidden) {
-        menu.classList.remove("hidden");
-        menu.classList.add("flex", "flex-col");
-        icons[0].classList.add("hidden");
-        icons[1].classList.remove("hidden");
-      } else {
-        menu.classList.add("hidden");
-        menu.classList.remove("flex", "flex-col");
-        icons[0].classList.remove("hidden");
-        icons[1].classList.add("hidden");
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 768) {
+          setMenuState(false);
+        }
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768) {
+        setMenuState(false);
       }
     });
   });
 </script>
+
+<style>
+  @media (max-width: 767px) {
+    .mobile-nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transform: translateY(-0.75rem) scale(0.98);
+      transition:
+        max-height 360ms var(--ease-snappy),
+        opacity 220ms ease,
+        transform 360ms var(--ease-snappy),
+        margin-top 360ms var(--ease-snappy);
+    }
+
+    .mobile-nav[data-open="true"] {
+      max-height: 14rem;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      margin-top: 1rem;
+      padding-bottom: 0.25rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .mobile-nav {
+      display: flex !important;
+      opacity: 1 !important;
+      transform: none !important;
+      max-height: none !important;
+      pointer-events: auto !important;
+      overflow: visible !important;
+    }
+  }
+</style>

@@ -1,17 +1,33 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
+import { getImage, Image } from "astro:assets";
 import Typewriter from "astro-typewriter";
+import introBg from "@/assets/intro.webp";
 import profileimg from "@/assets/profile.jpg";
 
 const messages = [
   "Backend Developer | Python, APIs & System Design",
   "Software Engineer focused on Backend Systems",
 ];
+
+const introBgMobile = await getImage({
+  src: introBg,
+  width: 900,
+  format: "webp",
+  quality: 75,
+});
+
+const introBgDesktop = await getImage({
+  src: introBg,
+  width: 1600,
+  format: "webp",
+  quality: 80,
+});
 ---
 
 <div
   id="intro"
+  style={`--intro-bg-mobile: url(${introBgMobile.src}); --intro-bg-desktop: url(${introBgDesktop.src});`}
   class="flex flex-col md:flex-row items-center justify-center md:justify-between p-5 md:p-12"
 >
   <!-- Personal information -->
@@ -57,7 +73,11 @@ const messages = [
     <Image
       class="w-80 rounded-full"
       src={profileimg}
-      alt="profile"
+      alt="Eric Riera profile picture"
+      widths={[320, 640]}
+      sizes="320px"
+      format="webp"
+      loading="eager"
     />
   </div>
 
@@ -74,9 +94,9 @@ const messages = [
 
 <style>
   #intro {
-    background-image: url(/intro.png);
+    background-image: var(--intro-bg-mobile);
     color: white;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
@@ -90,6 +110,13 @@ const messages = [
   }
 
   /*.scrolldown button*/
+  @media only screen and (min-width: 768px) {
+    #intro {
+      background-image: var(--intro-bg-desktop);
+      background-attachment: fixed;
+    }
+  }
+
   @media only screen and (min-width: 540px) {
     #sd {
       bottom: 1rem;

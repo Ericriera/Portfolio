@@ -2,6 +2,7 @@
 
 @theme {
   --color-cornflower: cornflowerblue;
+  --ease-snappy: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
@@ -11,6 +12,7 @@ html {
 body {
   @apply bg-neutral-900 text-white;
   background-image: url("/bg-grid.png");
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -25,4 +27,27 @@ body {
 ::-webkit-scrollbar-thumb {
   background: cornflowerblue;
   border-radius: 10px;
+}
+
+.interactive-press {
+  transition: transform 180ms var(--ease-snappy);
+}
+
+.interactive-press:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

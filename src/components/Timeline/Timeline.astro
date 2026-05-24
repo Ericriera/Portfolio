@@ -30,12 +30,14 @@ const education = sortByEndDateDesc(await getCollection("education"));
       <button
         id="tab-work"
         class="py-2 px-5 font-semibold opacity-100 transition-all duration-300 text-white hover:text-cornflower hover:opacity-100 cursor-pointer"
+        type="button"
       >
         Working
       </button>
       <button
         id="tab-education"
         class="py-2 px-5 font-semibold opacity-60 transition-all duration-300 text-white hover:text-cornflower hover:opacity-100 cursor-pointer"
+        type="button"
       >
         Education
       </button>
@@ -43,7 +45,7 @@ const education = sortByEndDateDesc(await getCollection("education"));
   </div>
 
   <!-- Working Content -->
-  <div id="content-work" class="flex justify-center items-center">
+  <div id="content-work" class="timeline-panel is-active flex justify-center items-center">
     <div class="max-w-7xl px-6 min-w-[25rem] md:min-w-[50rem] lg:min-w-[60rem]">
       <div
         class="relative before:absolute before:md:inset-0 before:mx-auto before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent translate-x-3 md:translate-x-0"
@@ -58,7 +60,7 @@ const education = sortByEndDateDesc(await getCollection("education"));
   </div>
 
   <!-- Education Content -->
-  <div id="content-education" class="hidden justify-center items-center">
+  <div id="content-education" class="timeline-panel is-hidden justify-center items-center">
     <div class="max-w-7xl px-6 min-w-[25rem] md:min-w-[50rem] lg:min-w-[60rem]">
       <div
         class="relative before:absolute before:md:inset-0 before:mx-auto before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent translate-x-3 md:translate-x-0"
@@ -74,37 +76,82 @@ const education = sortByEndDateDesc(await getCollection("education"));
 </section>
 
 <script is:inline>
-  // Script to handle tab switching
   document.addEventListener("DOMContentLoaded", () => {
     const workTab = document.getElementById("tab-work");
     const educationTab = document.getElementById("tab-education");
     const workContent = document.getElementById("content-work");
     const educationContent = document.getElementById("content-education");
+    if (!workTab || !educationTab || !workContent || !educationContent) return;
 
-    workTab.addEventListener("click", () => {
-      // Activate work tab
-      workTab.classList.add("opacity-100");
-      educationTab.classList.remove("opacity-100");
-      educationTab.classList.add("opacity-60");
+    const panels = {
+      work: workContent,
+      education: educationContent,
+    };
 
-      // Show work content
-      workContent.classList.remove("hidden");
-      workContent.classList.add("flex");
-      educationContent.classList.add("hidden");
-      educationContent.classList.remove("flex");
-    });
+    const tabs = {
+      work: workTab,
+      education: educationTab,
+    };
 
-    educationTab.addEventListener("click", () => {
-      // Activate education tab
-      educationTab.classList.add("opacity-100");
-      workTab.classList.remove("opacity-100");
-      workTab.classList.add("opacity-60");
+    let activeTab = "work";
+    let isTransitioning = false;
 
-      // Show education content
-      educationContent.classList.remove("hidden");
-      educationContent.classList.add("flex");
-      workContent.classList.add("hidden");
-      workContent.classList.remove("flex");
-    });
+    const showPanel = (nextTab) => {
+      if (nextTab === activeTab || isTransitioning) return;
+      isTransitioning = true;
+
+      const currentPanel = panels[activeTab];
+      const nextPanel = panels[nextTab];
+      tabs[activeTab].classList.remove("opacity-100");
+      tabs[activeTab].classList.add("opacity-60");
+      tabs[nextTab].classList.remove("opacity-60");
+      tabs[nextTab].classList.add("opacity-100");
+
+      currentPanel.classList.remove("is-active");
+      currentPanel.classList.add("is-leaving");
+
+      window.setTimeout(() => {
+        currentPanel.classList.remove("is-leaving", "flex");
+        currentPanel.classList.add("is-hidden");
+
+        nextPanel.classList.remove("is-hidden");
+        nextPanel.classList.add("flex");
+
+        requestAnimationFrame(() => {
+          nextPanel.classList.add("is-active");
+        });
+
+        activeTab = nextTab;
+        isTransitioning = false;
+      }, 180);
+    };
+
+    workTab.addEventListener("click", () => showPanel("work"));
+    educationTab.addEventListener("click", () => showPanel("education"));
   });
 </script>
+
+<style>
+  .timeline-panel {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    transition:
+      opacity 220ms ease,
+      transform 320ms var(--ease-snappy);
+    will-change: opacity, transform;
+  }
+
+  .timeline-panel.is-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .timeline-panel.is-leaving {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.985);
+  }
+
+  .timeline-panel.is-hidden {
+    display: none;
+  }
+</style>
